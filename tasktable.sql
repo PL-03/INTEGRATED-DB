@@ -47,7 +47,7 @@ INSERT INTO `task` (`taskTitle`, `taskDescription`, `taskAssignees`, `taskStatus
  'Assignees1Assignees2Assignees3', 'No Status', '2024-04-22 09:00:00', '2024-04-22 09:00:00'),
 ('Repository', NULL, NULL, 'To Do', '2024-04-22 09:05:00', '2024-04-22 14:00:00'),
 ('ดาต้าเบส', 'ສ້າງຖານຂໍ້ມູນ', 'あなた、彼、彼女 (私ではありません)', 'Doing', '2024-04-22 09:10:00', '2024-04-25 00:00:00'),
-('_Infrastructure_', '_Setup containers_', 'ไก่งวง กับ เพนกวิน', 'Done','2024-04-22 09:15:00', '2024-04-24 10:00:00');
+('_Infrastructure_', '_Setup containers_', 'ไก่งวง กับ เพนกวิน', 'Done','2024-04-22 09:15:00', '2024-04-22 10:00:00');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
