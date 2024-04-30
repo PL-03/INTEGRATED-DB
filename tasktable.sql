@@ -3,7 +3,7 @@
 -- Host: localhost    Database: integrated
 -- ------------------------------------------------------
 -- Server version	8.0.31
-
+SET TIME_ZONE = '+00:00';
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -22,32 +22,32 @@
 DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `task` (
   `id` int NOT NULL AUTO_INCREMENT,
   `taskTitle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `taskDescription` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `taskAssignees` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `taskStatus` enum('No Status','To Do','Doing','Done') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'No Status',
+  `taskStatus` enum('NO_STATUS','TO_DO','DOING','DONE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'NO_STATUS',
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `task`
 --
 
-SET TIME_ZONE = '+00:00';
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
 INSERT INTO `task` (`taskTitle`, `taskDescription`, `taskAssignees`, `taskStatus`, `createdOn`, `updatedOn`) VALUES
 ('TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5TaskTitle6TaskTitle7TaskTitle8TaskTitle9TaskTitle0', 'Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti1Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti2Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti3Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti4Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti5',
- 'Assignees1Assignees2Assignees3', 'No Status', '2024-04-22 09:00:00', '2024-04-22 09:00:00'),
-('Repository', NULL, NULL, 'To Do', '2024-04-22 09:05:00', '2024-04-22 14:00:00'),
-('ดาต้าเบส', 'ສ້າງຖານຂໍ້ມູນ', 'あなた、彼、彼女 (私ではありません)', 'Doing', '2024-04-22 09:10:00', '2024-04-25 00:00:00'),
-('_Infrastructure_', '_Setup containers_', 'ไก่งวง กับ เพนกวิน', 'Done','2024-04-22 09:15:00', '2024-04-22 10:00:00');
+ 'Assignees1Assignees2Assignees3', 'NO_STATUS', '2024-04-22 09:00:00', '2024-04-22 09:00:00'),
+('Repository', NULL, NULL, 'TO_DO', '2024-04-22 09:05:00', '2024-04-22 14:00:00'),
+('ดาต้าเบส', 'ສ້າງຖານຂໍ້ມູນ', 'あなた、彼、彼女 (私ではありません)', 'DOING', '2024-04-22 09:10:00', '2024-04-25 00:00:00'),
+('_Infrastructure_', '_Setup containers_', 'ไก่งวง กับ เพนกวิน', 'DONE','2024-04-22 09:15:00', '2024-04-22 10:00:00');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
