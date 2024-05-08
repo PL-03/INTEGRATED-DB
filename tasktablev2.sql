@@ -3,7 +3,7 @@
 -- Host: localhost    Database: integrated
 -- ------------------------------------------------------
 -- Server version	8.0.31
-SET TIME_ZONE = '+00:00';
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -14,6 +14,32 @@ SET TIME_ZONE = '+00:00';
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status` (
+  `statusId` int NOT NULL AUTO_INCREMENT,
+  `statusName` varchar(50) NOT NULL,
+  `statusDescription` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`statusId`),
+  UNIQUE KEY `statusName_UNIQUE` (`statusName`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'No Status',NULL),(2,'To Do',NULL),(3,'Doing',NULL),(4,'Done',NULL);
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `task`
@@ -45,32 +71,6 @@ INSERT INTO `task` VALUES (1,'TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5
 UNLOCK TABLES;
 
 --
--- Table structure for table `taskstatus`
---
-
-DROP TABLE IF EXISTS `taskstatus`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `taskstatus` (
-  `statusId` int NOT NULL AUTO_INCREMENT,
-  `statusName` varchar(50) NOT NULL,
-  `statusDescription` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`statusId`),
-  UNIQUE KEY `statusName_UNIQUE` (`statusName`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `taskstatus`
---
-
-LOCK TABLES `taskstatus` WRITE;
-/*!40000 ALTER TABLE `taskstatus` DISABLE KEYS */;
-INSERT INTO `taskstatus` VALUES (1,'No Status',NULL);
-/*!40000 ALTER TABLE `taskstatus` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `taskv2`
 --
 
@@ -82,13 +82,13 @@ CREATE TABLE `taskv2` (
   `taskTitle` varchar(100) NOT NULL,
   `taskDescription` varchar(500) DEFAULT NULL,
   `taskAssignees` varchar(30) DEFAULT NULL,
-  `taskStatus` int NOT NULL DEFAULT '1',
+  `taskStatusId` int NOT NULL DEFAULT '1',
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_taskv2_taskStatus_idx` (`taskStatus`),
-  CONSTRAINT `fk_taskv2_taskStatus` FOREIGN KEY (`taskStatus`) REFERENCES `taskstatus` (`statusId`)
+  KEY `fk_taskv2_taskStatus_idx` (`taskStatusId`),
+  CONSTRAINT `fk_taskv2_taskStatus` FOREIGN KEY (`taskStatusId`) REFERENCES `status` (`statusId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,6 +98,10 @@ CREATE TABLE `taskv2` (
 
 LOCK TABLES `taskv2` WRITE;
 /*!40000 ALTER TABLE `taskv2` DISABLE KEYS */;
+INSERT INTO `taskv2` VALUES (1,'TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5TaskTitle6TaskTitle7TaskTitle8TaskTitle9TaskTitle0','Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti1Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti2Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti3Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti4Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti5'
+,'Assignees1Assignees2Assignees3',1,'2024-04-22 09:00:00','2024-04-22 09:00:00'),
+(2,'Repository',NULL,NULL,2,'2024-04-22 09:05:00','2024-04-22 14:00:00'),(3,'ดาต้าเบส','ສ້າງຖານຂໍ້ມູນ','あなた、彼、彼女 (私ではありません)',3,'2024-04-22 09:10:00','2024-04-25 00:00:00'),
+(4,'_Infrastructure_','_Setup containers_','ไก่งวง กับ เพนกวิน',4,'2024-04-22 09:15:00','2024-04-22 10:00:00');
 /*!40000 ALTER TABLE `taskv2` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-08  1:01:52
+-- Dump completed on 2024-05-08 12:49:23
