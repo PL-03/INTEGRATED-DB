@@ -3,7 +3,7 @@
 -- Host: localhost    Database: integrated
 -- ------------------------------------------------------
 -- Server version	8.0.31
-
+SET TIME_ZONE = '+00:00';
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -37,7 +37,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'No Status',NULL),(2,'To Do',NULL),(3,'Doing',NULL),(4,'Done',NULL);
+INSERT INTO `status` VALUES (1,'No Status','The default status'),(2,'To Do',NULL),(3,'Doing',NULL),(4,'Done',NULL);
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
