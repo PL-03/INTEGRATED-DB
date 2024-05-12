@@ -37,7 +37,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'No Status','The default status'),(2,'To Do',NULL),(3,'Doing',NULL),(4,'Done',NULL);
+INSERT INTO `status` VALUES (1,'No Status','The default status'),(2,'To Do',NULL),(3,'Doing','Being worked on'),(4,'Done','Finished');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
