@@ -3,6 +3,8 @@
 -- Host: localhost    Database: integrated
 -- ------------------------------------------------------
 -- Server version	8.0.31
+CREATE SCHEMA IF NOT EXISTS integrated;
+use integrated;
 SET TIME_ZONE = '+00:00';
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
