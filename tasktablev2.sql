@@ -39,7 +39,8 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'No Status','The default status'),(2,'To Do',NULL),(3,'Doing','Being worked on'),(4,'Done','Finished');
+INSERT INTO `status` VALUES (1,'No Status','A status has not been assigned'),(2,'To Do','The task is included in the project'),(3,'In Progress','The task is being worked on'),
+(4,'Reviewing','The task is being reviewed'),(5,'Testing','The task is being tested'),(6,'Waiting','The task is waiting for a resource'),(7,'Done','The task has been completed');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +69,10 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5TaskTitle6TaskTitle7TaskTitle8TaskTitle9TaskTitle0','Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti1Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti2Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti3Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti4Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti5','Assignees1Assignees2Assignees3','NO_STATUS','2024-04-22 09:00:00','2024-04-22 09:00:00'),(2,'Repository',NULL,NULL,'TO_DO','2024-04-22 09:05:00','2024-04-22 14:00:00'),(3,'ดาต้าเบส','ສ້າງຖານຂໍ້ມູນ','あなた、彼、彼女 (私ではありません)','DOING','2024-04-22 09:10:00','2024-04-25 00:00:00'),(4,'_Infrastructure_','_Setup containers_','ไก่งวง กับ เพนกวิน','DONE','2024-04-22 09:15:00','2024-04-22 10:00:00');
+INSERT INTO `task` VALUES (1,'TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5TaskTitle6TaskTitle7TaskTitle8TaskTitle9TaskTitle0','Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti1Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti2Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti3Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti4Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti5','Assignees1Assignees2Assignees3','NO_STATUS','2024-04-22 09:00:00','2024-04-22 09:00:00'),
+(2,'Repository',NULL,NULL,'TO_DO','2024-04-22 09:05:00','2024-04-22 14:00:00'),
+(3,'ดาต้าเบส','ສ້າງຖານຂໍ້ມູນ','あなた、彼、彼女 (私ではありません)','DOING','2024-04-22 09:10:00','2024-04-25 00:00:00'),
+(4,'_Infrastructure_','_Setup containers_','ไก่งวง กับ เพนกวิน','DONE','2024-04-22 09:15:00','2024-04-22 10:00:00');
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,10 +104,10 @@ CREATE TABLE `taskv2` (
 
 LOCK TABLES `taskv2` WRITE;
 /*!40000 ALTER TABLE `taskv2` DISABLE KEYS */;
-INSERT INTO `taskv2` VALUES (1,'TaskTitle1TaskTitle2TaskTitle3TaskTitle4TaskTitle5TaskTitle6TaskTitle7TaskTitle8TaskTitle9TaskTitle0','Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti1Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti2Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti3Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti4Descripti1Descripti2Descripti3Descripti4Descripti5Descripti6Descripti7Descripti8Descripti9Descripti5'
-,'Assignees1Assignees2Assignees3',1,'2024-04-22 09:00:00','2024-04-22 09:00:00'),
-(2,'Repository',NULL,NULL,2,'2024-04-22 09:05:00','2024-04-22 14:00:00'),(3,'ดาต้าเบส','ສ້າງຖານຂໍ້ມູນ','あなた、彼、彼女 (私ではありません)',3,'2024-04-22 09:10:00','2024-04-25 00:00:00'),
-(4,'_Infrastructure_','_Setup containers_','ไก่งวง กับ เพนกวิน',4,'2024-04-22 09:15:00','2024-04-22 10:00:00');
+INSERT INTO `taskv2` VALUES (1,'NS01',null,null,1,'2024-05-14 09:00:00','2024-05-14 09:00:00'),
+(2,'TD01',NULL,NULL,2,'2024-05-14 09:10:00','2024-05-14 09:10:00'),(3,'IP01',null,null,3,'2024-05-14 09:20:00','2024-05-14 09:20:00'),
+(4,'TD02',null,null,2,'2024-05-14 09:30:00','2024-05-14 09:30:00'),(5,'DO01',null,null,7,'2024-05-14 09:40:00','2024-05-14 09:40:00'),
+(6,'IP02',null,null,3,'2024-05-14 09:50:00','2024-05-14 09:50:00');
 /*!40000 ALTER TABLE `taskv2` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
