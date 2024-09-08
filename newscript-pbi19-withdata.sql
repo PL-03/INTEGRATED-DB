@@ -39,7 +39,7 @@ CREATE TABLE `board` (
 
 LOCK TABLES `board` WRITE;
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
-INSERT INTO `board` VALUES ('test','test','test');
+INSERT INTO `board` VALUES ('3vgc-H-Frq','tettetff','0712334f-4982-4d26-a7ef-4ad0ff53cb18'),('test','test','test'),('Z-pARuSctr','tettet','0712334f-4982-4d26-a7ef-4ad0ff53cb18');
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,12 +54,11 @@ CREATE TABLE `status` (
   `statusId` int NOT NULL AUTO_INCREMENT,
   `statusName` varchar(50) NOT NULL,
   `statusDescription` varchar(200) DEFAULT NULL,
-  `board_boardId` varchar(10) NOT NULL,
+  `boardId` varchar(10) NOT NULL,
   PRIMARY KEY (`statusId`),
-  UNIQUE KEY `statusName_UNIQUE` (`statusName`),
-  KEY `fk_status_board1_idx` (`board_boardId`),
-  CONSTRAINT `fk_status_board1` FOREIGN KEY (`board_boardId`) REFERENCES `board` (`boardId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_status_board1_idx` (`boardId`),
+  CONSTRAINT `fk_status_board1` FOREIGN KEY (`boardId`) REFERENCES `board` (`boardId`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +67,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'No Status','A status has not been assigned','test'),(2,'To Do','The task is included in the project','test'),(3,'Doing','The task is being worked on','test'),(4,'Done','The task has been completed','test');
+INSERT INTO `status` VALUES (1,'No Status','A status has not been assigned','test'),(2,'To Do','The task is included in the project','test'),(3,'Doing','The task is being worked on','test'),(4,'Done','The task has been completed','test'),(5,'No Status','A status has not been assigned','Z-pARuSctr'),(6,'To Do','The task is included in the project','Z-pARuSctr'),(7,'Doing','The task is being worked on','Z-pARuSctr'),(8,'Done','The task has been completed','Z-pARuSctr'),(9,'No Status','A status has not been assigned','3vgc-H-Frq'),(10,'To Do','The task is included in the project','3vgc-H-Frq'),(11,'Doing','The task is being worked on','3vgc-H-Frq'),(12,'Done','The task has been completed','3vgc-H-Frq');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,14 +86,14 @@ CREATE TABLE `taskv2` (
   `taskStatusId` int NOT NULL DEFAULT '1',
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `board_boardId` varchar(10) NOT NULL,
+  `boardId` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_taskv2_taskStatus_idx` (`taskStatusId`),
-  KEY `fk_taskv2_board1_idx` (`board_boardId`),
-  CONSTRAINT `fk_taskv2_board1` FOREIGN KEY (`board_boardId`) REFERENCES `board` (`boardId`),
+  KEY `fk_taskv2_board1_idx` (`boardId`),
+  CONSTRAINT `fk_taskv2_board1` FOREIGN KEY (`boardId`) REFERENCES `board` (`boardId`),
   CONSTRAINT `fk_taskv2_taskStatus` FOREIGN KEY (`taskStatusId`) REFERENCES `status` (`statusId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +102,7 @@ CREATE TABLE `taskv2` (
 
 LOCK TABLES `taskv2` WRITE;
 /*!40000 ALTER TABLE `taskv2` DISABLE KEYS */;
-INSERT INTO `taskv2` VALUES (1,'test','test','test',1,'2024-09-05 16:25:51','2024-09-05 16:25:51','test');
+INSERT INTO `taskv2` VALUES (2,'tettet','hehe','mat  dsad',3,'2024-09-08 17:29:46','2024-09-08 17:29:46','Z-pARuSctr'),(3,'test',NULL,'test',1,'2024-09-08 17:39:55','2024-09-08 17:39:55','test');
 /*!40000 ALTER TABLE `taskv2` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -116,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-05 23:27:27
+-- Dump completed on 2024-09-09  0:41:20
