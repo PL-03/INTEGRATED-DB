@@ -1,13 +1,17 @@
+-- Set Time Zone
 SET TIME_ZONE = '+00:00';
+
+-- Create Database if not exists
 CREATE DATABASE IF NOT EXISTS integrated /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE integrated;
 
--- Drop existing tables if they exist
-DROP TABLE IF EXISTS taskv2;
-DROP TABLE IF EXISTS status;
+-- Disable foreign key checks for now
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+
+-- Drop existing board table if exists
 DROP TABLE IF EXISTS board;
 
--- Create board table
+-- Create the board table
 CREATE TABLE board (
   boardId varchar(10) NOT NULL,
   name varchar(120) NOT NULL,
@@ -17,8 +21,11 @@ CREATE TABLE board (
   PRIMARY KEY (boardId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Create status table
-CREATE TABLE status (
+-- Drop existing statusv3 table if exists
+DROP TABLE IF EXISTS statusv3;
+
+-- Create the statusv3 table
+CREATE TABLE statusv3 (
   statusId int NOT NULL AUTO_INCREMENT,
   statusName varchar(50) NOT NULL,
   statusDescription varchar(200) DEFAULT NULL,
@@ -26,12 +33,15 @@ CREATE TABLE status (
   createdOn timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedOn timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (statusId),
-  KEY fk_status_board1_idx (boardId),
-  CONSTRAINT fk_status_board1 FOREIGN KEY (boardId) REFERENCES board (boardId) ON DELETE CASCADE
+  KEY fk_statusv3_board1_idx (boardId),
+  CONSTRAINT fk_statusv3_board1 FOREIGN KEY (boardId) REFERENCES board (boardId)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Create taskv2 table
-CREATE TABLE taskv2 (
+-- Drop existing taskv3 table if exists
+DROP TABLE IF EXISTS taskv3;
+
+-- Create the taskv3 table
+CREATE TABLE taskv3 (
   id int NOT NULL AUTO_INCREMENT,
   taskTitle varchar(100) NOT NULL,
   taskDescription varchar(500) DEFAULT NULL,
@@ -42,25 +52,27 @@ CREATE TABLE taskv2 (
   boardId varchar(10) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY id_UNIQUE (id),
-  KEY fk_taskv2_taskStatus_idx (taskStatusId),
-  KEY fk_taskv2_board1_idx (boardId),
-  CONSTRAINT fk_taskv2_board1 FOREIGN KEY (boardId) REFERENCES board (boardId) ON DELETE CASCADE,
-  CONSTRAINT fk_taskv2_taskStatus FOREIGN KEY (taskStatusId) REFERENCES status (statusId) ON DELETE RESTRICT
+  KEY fk_taskv3_taskStatus_idx (taskStatusId),
+  KEY fk_taskv3_board1_idx (boardId),
+  CONSTRAINT fk_taskv3_board1 FOREIGN KEY (boardId) REFERENCES board (boardId),
+  CONSTRAINT fk_taskv3_taskStatus FOREIGN KEY (taskStatusId) REFERENCES statusv3 (statusId)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Create a stored procedure for deleting a board
+-- Enable foreign key checks again
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+
+-- Stored Procedure to delete board and associated tasks and statuses
+DROP PROCEDURE IF EXISTS DeleteBoard;
 DELIMITER //
-
-CREATE PROCEDURE DeleteBoard(IN boardIdParam VARCHAR(10))
+CREATE PROCEDURE DeleteBoard(IN boardIdToDelete VARCHAR(10))
 BEGIN
-    -- First, delete tasks associated with the board
-    DELETE FROM taskv2 WHERE boardId = boardIdParam;
+    -- First delete all tasks associated with the board
+    DELETE FROM taskv3 WHERE boardId = boardIdToDelete;
 
-    -- Then, delete statuses associated with the board
-    DELETE FROM status WHERE boardId = boardIdParam;
+    -- Then delete all statuses associated with the board
+    DELETE FROM statusv3 WHERE boardId = boardIdToDelete;
 
-    -- Finally, delete the board itself
-    DELETE FROM board WHERE boardId = boardIdParam;
+    -- Finally delete the board
+    DELETE FROM board WHERE boardId = boardIdToDelete;
 END //
-
 DELIMITER ;
